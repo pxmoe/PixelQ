@@ -1,27 +1,28 @@
-# Use an official Python base image
+# Use official Python base
 FROM python:3.10-slim
 
-# Set working directory
+# Set work directory
 WORKDIR /app
 
-# Install system dependencies
+# System dependencies (Tesseract + FFmpeg if used)
 RUN apt-get update && apt-get install -y \
-    ffmpeg \
     tesseract-ocr \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy all project files
+# Copy project
 COPY . .
 
-# Install Python dependencies
+# Install Python packages
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Install Honcho (Procfile runner)
+# Install Honcho for Procfile management
 RUN pip install honcho
 
-# Expose the default Flask port
+# Expose Flask port
 EXPOSE 8080
 
-# Set the default command
+# Start both servers
 CMD ["honcho", "start"]
+
