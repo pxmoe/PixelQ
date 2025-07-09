@@ -1,4 +1,4 @@
-app = "pixiq-app" # replace with your preferred app name if needed
+app = "pixiq-app"  # change this to a unique app name if already taken
 
 [build]
   builder = "Dockerfile"
@@ -11,9 +11,9 @@ app = "pixiq-app" # replace with your preferred app name if needed
   protocol = "tcp"
 
   [[services.ports]]
-    handlers = ["http"]
     port = 80
+    handlers = ["http"]
 
   [[services.ports]]
-    handlers = ["tls", "http"]
     port = 443
+    handlers = ["tls", "http"]
