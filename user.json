@@ -1,0 +1,8 @@
+{
+  "email@example.com": {
+    "username": "John Doe",
+    "password": "1234",  
+    "credits": 5,
+    "is_premium": false
+  }
+}

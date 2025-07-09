@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PixIQ Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- Background -->
+  <video autoplay muted loop id="bg-video">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <a href="/dashboard"><img src="assets/logo.png" alt="PixIQ Logo" class="dashboard-logo" /></a>
+    <div id="user-auth-buttons">
+      <a href="/login.html" class="auth-btn">Login</a>
+      <a href="/signup.html" class="auth-btn">Sign Up</a>
+    </div>
+  </header>
+
+  <div class="dashboard-wrapper">
+    <!-- Left Ad -->
+    <aside class="ad-left">
+      <div class="adsense-box">[AdSense Left]</div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Tool Selection Panel -->
+      <section class="tab active">
+        <div class="tools">
+          <div class="tool-card" onclick="showTab('resizeTab')">Resize Image</div>
+          <div class="tool-card" onclick="showTab('compressTab')">Compress Image</div>
+          <div class="tool-card" onclick="showTab('convertTab')">Convert Format</div>
+          <!-- <div class="tool-card" onclick="showTab('removeWatermarkTab')">Remove Watermark</div> -->
+          <div class="tool-card disabled" style="opacity: 0.5; cursor: not-allowed;" title="Coming Soon">Remove Watermark</div>
+
+          <div class="tool-card" onclick="showTab('aiWriterTab')">AI Text Writer</div>
+        </div>
+      </section>
+
+      <!-- Resize Image -->
+      <section id="resizeTab" class="tab">
+        <h3>📐 Resize Image</h3>
+        <div class="tool-section">
+          <input type="file" id="resizeInput" />
+          <input type="number" id="resizeWidth" placeholder="Width" />
+          <input type="number" id="resizeHeight" placeholder="Height" />
+          <button onclick="resizeImage()">Resize</button>
+        </div>
+      </section>
+
+      <!-- Compress Image -->
+      <section id="compressTab" class="tab">
+        <h3>📉 Compress Image</h3>
+        <div class="tool-section">
+          <input type="file" id="compressInput" />
+          <button onclick="compressImage()">Compress</button>
+        </div>
+      </section>
+
+      <!-- Convert Image -->
+      <section id="convertTab" class="tab">
+        <h3>🔁 Convert Image Format</h3>
+        <div class="tool-section">
+          <input type="file" id="convertInput" accept="image/*" />
+          <select id="formatType">
+            <option value="image/jpeg">Convert to JPG</option>
+            <option value="image/png">Convert to PNG</option>
+            <option value="image/webp">Convert to WebP</option>
+          </select>
+          <button onclick="convertImage()">Convert</button>
+          <div id="convertResult" class="result-box"></div>
+        </div>
+      </section>
+
+      <!-- AI Caption -->
+      <section id="aiWriterTab" class="tab">
+        <h3>🧠 AI Image Captioning</h3>
+        <div class="tool-section">
+          <input type="file" id="aiImageInput" accept="image/*" />
+          <input type="text" id="userPrompt" placeholder="Custom Prompt (optional)" />
+          <button onclick="generateCaption()">Generate Caption</button>
+          <div id="aiCaptionResult" class="result-box"></div>
+        </div>
+      </section>
+
+      <!-- Watermark Remover Dropdown Mode -->
+      <!-- Watermark Remover LaMa-Only -->
+      <!-- <section id="removeWatermarkTab" class="tab">
+        <h3>🧼 Watermark Remover</h3>
+        <div class="tool-section">
+          <label for="wmFile">Upload Image for Watermark Removal:</label>
+          <input type="file" id="wmFile" accept="image/*" />
+
+          <div class="canvas-preview-area">
+            <h4 style="margin-top: 1rem;">🖌️ Draw Over the Watermark Area</h4>
+            <div id="maskCanvasContainer">
+              <div class="canvas-wrapper">
+               <img id="imagePreview" />
+               <canvas id="maskCanvas"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <button id="removeWatermarkButton">Remove Watermark</button>
+          <div id="wmResult" class="result-box"></div>
+          <img id="wmPreview" style="max-width: 100%; display: none;" />
+          <a id="wmDownload" download="cleaned.png" style="display: none;" class="auth-btn">Download Result</a>
+        </div>
+      </section> -->
+      <section id="removeWatermarkTab" class="tab">
+       <h3>🧼 Watermark Remover</h3>
+       <div class=tool-section coming-soon-box">
+        <p>🚧 This feature is <strong>coming soon</strong> and under construction.</p>
+        <input type="email" placeholder="Enter your email to get notified" class="notify-input" />
+        <button class="notify-btn" onclick="notifyComingSoon()">Notify Me</button>
+        <p id="notifyMsg" class="notify-msg"></p>
+       </div>
+      </section>
+ 
+    </main>
+
+    <!-- Right Ad -->
+    <aside class="ad-right">
+      <div class="adsense-box">[AdSense Right]</div>
+    </aside>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    fetch("/user_info").then(res => res.json()).then(data => {
+      if (data.logged_in) {
+        document.getElementById("user-auth-buttons").innerHTML =
+          `👋 ${data.username} | <a href="/logout">Logout</a>`;
+      }
+    });
+  </script>
+</body>
+</html>

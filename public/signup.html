@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | PixIQ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      <img src="assets/logo.png" class="logo" alt="PixIQ Logo" />
+      <h2>Create your PixIQ account</h2>
+      <form id="signup-form">
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+        <p class="divider">or</p>
+        <button type="button" class="google-btn">
+          <i class="ri-google-line"></i> Sign up with Google
+        </button>
+        <p style="margin-top: 1rem; color: #aaa;">
+          Already have an account? <a href="index.html" style="color: var(--accent); text-decoration: none;">Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  document.getElementById('signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = this[0].value;
+    const email = this[1].value;
+    const password = this[2].value;
+
+    const res = await fetch("/register", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = "/dashboard";
+    } else {
+      alert(data.error || "Signup failed");
+    }
+  });
+</script>
+
+</body>
+</html>
