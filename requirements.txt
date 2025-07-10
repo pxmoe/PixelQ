@@ -18,4 +18,4 @@ gunicorn==22.0.0
 
 # Git-based dependencies
 git+https://github.com/openai/CLIP.git@dcba3cb2e2827b402d2701e7e1c7d9fed8a20ef1
-git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
+
