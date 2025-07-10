@@ -1,3 +1,10 @@
+# Pin critical dependencies first
+torch==2.2.0
+torchvision==0.17.0
+
+# Then any other needed deps
+numpy
+opencv-python
 addict==2.4.0
 aiofiles==23.2.1
 aiohappyeyeballs==2.6.1
