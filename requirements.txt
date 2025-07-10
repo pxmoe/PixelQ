@@ -1,3 +1,5 @@
+setuptools==68.2.2
+wheel==0.40.0
 Flask==2.3.3
 Authlib==1.2.1
 python-dotenv==1.0.1
@@ -16,7 +18,7 @@ fastapi==0.111.0
 uvicorn==0.29.0
 gunicorn==22.0.0
 pytesseract==0.3.10
-setuptools==68.2.2
+
 
 # Git-based dependencies
 git+https://github.com/openai/CLIP.git@dcba3cb2e2827b402d2701e7e1c7d9fed8a20ef1
