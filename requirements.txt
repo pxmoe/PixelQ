@@ -18,6 +18,8 @@ fastapi==0.111.0
 uvicorn==0.29.0
 gunicorn==22.0.0
 pytesseract==0.3.10
+honcho==1.1.0
+
 
 
 # Git-based dependencies
