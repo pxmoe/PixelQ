@@ -4,6 +4,8 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 import torch
 import json
 from flask_cors import CORS
+from fastapi import FastAPI, UploadFile, File
+from io import BytesIO
 
 
 
@@ -14,7 +16,7 @@ print("⏳ Loading BLIP-2 FLAN-T5 model...")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-model = Blip2ForConditionalGeneration.from_pretrained(
+model = BlipForConditionalGeneration.from_pretrained(
     "Salesforce/blip-image-captioning-base",
     torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
     device_map="auto"
