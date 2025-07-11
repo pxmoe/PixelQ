@@ -11,7 +11,7 @@ Pillow==9.5.0
 pytesseract==0.3.10
 torch==2.2.2
 torchvision==0.17.2
-transformers==4.41.1
+transformers==4.36.2
 tqdm==4.66.4
 requests==2.32.3
 scipy==1.13.1
