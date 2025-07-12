@@ -68,6 +68,10 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'png', 'jpg', 'jpeg', 'mp4'}
 
 
+@app.route('/ads.txt')
+def serve_ads_txt():
+    return send_from_directory('.', 'ads.txt')
+    
 @app.route('/')
 def index():
     return send_from_directory('public', 'dashboard.html')
