@@ -69,8 +69,8 @@ def allowed_file(filename):
 
 
 @app.route('/ads.txt')
-def serve_ads_txt():
-    return send_from_directory('.', 'ads.txt')
+def ads_txt():
+    return send_from_directory('public', 'ads.txt')
     
 @app.route('/')
 def index():
