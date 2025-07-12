@@ -70,7 +70,7 @@ def allowed_file(filename):
 
 @app.route('/ads.txt')
 def ads_txt():
-    return send_from_directory('public', 'ads.txt')
+    return send_from_directory('.', 'ads.txt')
     
 @app.route('/')
 def index():
